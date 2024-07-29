@@ -1,8 +1,10 @@
 ﻿
+using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections),typeof(Damgeable))]
 public class PlayerController : MonoBehaviour
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     Animator animator;
 
+    public bool canAction=true;
     public float CurrentMoveSpeed
     {
         get 
@@ -128,10 +131,16 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
         }
         animator.SetFloat(AnimationStrings.yVelocity,rb.velocity.y);
+        if (damgeable.IsAlive == false)
+        {
+            SceneManager.LoadSceneAsync(2);
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (!canAction)
+            return;
         moveInput = context.ReadValue<Vector2>();
 
         if (IsAlive)
@@ -160,6 +169,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnRun(InputAction.CallbackContext context)
     {
+        if (!canAction)
+            return;
         if (context.started)
         {
             IsRunning = true;
@@ -173,6 +184,8 @@ public class PlayerController : MonoBehaviour
     public void OnJump(InputAction.CallbackContext context)
     {
         //check
+        if (!canAction)
+            return;
         if (context.started && touchingDirections.IsGrounded &&IsAlive)
         {
             airWalkSpeed = CurrentMoveSpeed;
@@ -189,6 +202,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
+        if (!canAction)
+            return;
         if (context.started)
         {
             animator.SetTrigger(AnimationStrings.attackTrigger);
@@ -196,6 +211,8 @@ public class PlayerController : MonoBehaviour
     }
     public void OnRangedAttack(InputAction.CallbackContext context)
     {
+        if (!canAction)
+            return;
         if (context.performed)
         {
             animator.SetTrigger(AnimationStrings.rangedAttackTrigger);

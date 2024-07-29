@@ -10,7 +10,7 @@ public class Damgeable : MonoBehaviour
     Animator animator;
     [SerializeField]
     private bool _isAlive=true;
-    private bool IsAlive
+    public bool IsAlive
     {
         get
         {

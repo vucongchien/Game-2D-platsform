@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     public GameObject damageTextPrefab;
@@ -57,7 +57,7 @@ public class UIManager : MonoBehaviour
             #elif (UNITY_STANDALONE)
                   Application.Quit();
             #elif (UNITY_WEBGL)
-                SeceneManager.LoadScene("QuitScene");
+                SceneManager.LoadScene("QuitScene");
             #endif
         }
     }

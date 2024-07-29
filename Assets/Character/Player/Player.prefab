@@ -394,7 +394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9efac27349244d4baf10ffa5eac845b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 10
+  attackDamage: 12
   knockback: {x: 0, y: 0}
 --- !u!60 &7199084567814450655
 PolygonCollider2D:
@@ -869,6 +869,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2d3b40db-b710-4f75-9442-7df1e708a369
     m_ActionName: Player/RangedAttack[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5cc422ee-852d-4cd6-8370-d87f9e5be190
+    m_ActionName: UI/Escape[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -912,6 +916,8 @@ MonoBehaviour:
   airWalkSpeed: 3
   jumpImpulse: 10
   jumpTime: 0
+  npc: {fileID: 3826307543880254954, guid: 5182d2d38138f8c43939cf96977ae8f3, type: 3}
+  _canAction: 1
   _isMoving: 0
   _isRunning: 0
 --- !u!114 &2949763902673041394
